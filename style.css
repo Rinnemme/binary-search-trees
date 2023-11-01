@@ -1,0 +1,71 @@
+* {
+    font-family: 'Raleway';
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    background-color: #f7f7f7;
+}
+
+#container {
+    margin-top:50px;
+    margin-bottom:50px;
+    display:flex;
+    flex-direction:column;
+    width: min(100%, 600px);
+    /* border: 5px solid pink; */
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+}
+
+button {
+    background-color: rgb(40,40,40);
+    border-radius:2px;
+    padding: 8px 12px 8px 12px;
+    color:white;
+}
+
+#balance-buttons {
+    display:flex;
+    gap: 20px; 
+}
+
+#tree {
+    background-color:white;
+    border: 1px solid black;
+    height: fit-content;
+    min-height:200px;
+    width: 80%;
+}
+
+#order-display {
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    align-items:center;
+    justify-content:center;
+}
+
+#level-order,
+#pre-order,
+#post-order,
+#in-order {
+    margin-top:7px;
+    font-weight: 200;
+}
+
+.order {
+    margin-top:10px;
+    margin-bottom:10px;
+    background-color:white;
+    width:50%;
+    text-align:center;
+    padding:10px;
+    gap:8px;
+}
