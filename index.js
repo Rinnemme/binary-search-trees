@@ -5,6 +5,7 @@ const inOrderText = document.getElementById('in-order')
 const orderDisplay = document.getElementById('order-display')
 const balanceButtons = document.getElementById('balance-buttons')
 const treeDisplay = document.getElementById('tree')
+const balanceStatus = document.getElementById('balance-status')
 
 class node {
     constructor (value) {
@@ -226,6 +227,7 @@ function newTree() {
     if (balanceButtons.style.display !== 'flex') {
         orderDisplay.style.display = 'flex'
         balanceButtons.style.display = 'flex'
+        balanceStatus.style.display = 'flex'
     }
 }
 
@@ -246,7 +248,9 @@ function unbalanceTree() {
     unbalanceTally += 1
     if (!demoTree.isBalanced()) {
         treeDisplay.style.borderColor = 'rgb(220,20,60)'
-        treeDisplay.style.backgroundColor = 'rgb(254, 220, 220)'
+        // treeDisplay.style.backgroundColor = 'rgb(255, 240, 240)'
+        balanceStatus.textContent = 'Tree is not balanced'
+        balanceStatus.style.color = 'rgb(220,20,60)'
     }
     updateOrderFields()
 }
@@ -256,7 +260,9 @@ function rebalanceTree() {
     overwriteDiv(treeDisplay, demoTree.root)
     if (demoTree.isBalanced()) {
         treeDisplay.style.borderColor = 'rgb(0,0,0)'
-        treeDisplay.style.backgroundColor = 'rgb(255,255,255)'
+        // treeDisplay.style.backgroundColor = 'rgb(255,255,255)'
+        balanceStatus.textContent = 'Tree is balanced'
+        balanceStatus.style.color = 'rgb(0,0,0)'
     }
     unbalanceTally = 0
     rebalanceTally += 1

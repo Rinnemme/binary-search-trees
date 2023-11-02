@@ -35,6 +35,14 @@ button {
     gap: 20px; 
 }
 
+#tree-container {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    width: min(100%, 400px);
+}
+
 #tree {
     background-color:white;
     border: 1px solid black;
@@ -42,7 +50,15 @@ button {
     line-height:1.5em;
     min-height:200px;
     padding: 12px;
-    width: min(100%, 400px);
+    width: 100%;
+}
+
+#balance-status {
+    position:absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: .9em;
+    display:none;
 }
 
 #order-display {
