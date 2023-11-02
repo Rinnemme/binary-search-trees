@@ -40,7 +40,7 @@ button {
     align-items:center;
     justify-content:center;
     position:relative;
-    width: min(100%, 400px);
+    width: min(90%, 400px);
 }
 
 #tree {
