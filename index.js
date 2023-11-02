@@ -218,8 +218,10 @@ function updateOrderFields() {
     inOrderText.textContent = demoTree.inOrder().join(', ')
 }
 
+let rebalanceTally = 0
+
 function newTree() {
-    unbalanceTally = 0
+    rebalanceTally = 0
     const array = randomArray()
     demoTree.root = buildTree(array, 0, array.length-1)
     overwriteDiv(treeDisplay, demoTree.root)
@@ -231,40 +233,37 @@ function newTree() {
     }
 }
 
-let unbalanceTally = 0
-let rebalanceTally = 0
-
 function unbalanceTree() {
-    if (unbalanceTally >= 3 && !demoTree.isBalanced()) {
-        alert('Easy there, the tree is already unbalanced.')
-        return
-    }
-    if (rebalanceTally >=3) {
-        alert('Why not start over with a new tree?')
-        return
-    }
-    demoTree.insert(Math.ceil(Math.random()*(50+unbalanceTally*50))+50)
-    overwriteDiv(treeDisplay, demoTree.root)
-    unbalanceTally += 1
     if (!demoTree.isBalanced()) {
-        treeDisplay.style.borderColor = 'rgb(220,20,60)'
-        // treeDisplay.style.backgroundColor = 'rgb(255, 240, 240)'
-        balanceStatus.textContent = 'Tree is not balanced'
-        balanceStatus.style.color = 'rgb(220,20,60)'
+        alert('The tree is already unbalanced')
+        return
     }
+    if (rebalanceTally >=4) {
+        alert('This is getting out of hand. Why not start over with a new tree?')
+        return
+    }
+    while (demoTree.isBalanced()) {
+        demoTree.insert(Math.ceil(Math.random()*(50+rebalanceTally*50))+50)
+    }
+    overwriteDiv(treeDisplay, demoTree.root)
     updateOrderFields()
+    treeDisplay.style.borderColor = 'rgb(220,20,60)'
+    balanceStatus.textContent = 'Tree is not balanced'
+    balanceStatus.style.color = 'rgb(220,20,60)'
 }
 
 function rebalanceTree() {
+    if (demoTree.isBalanced()) {
+        alert('The tree is already balanced')
+        return
+    }
     demoTree.rebalance()
     overwriteDiv(treeDisplay, demoTree.root)
     if (demoTree.isBalanced()) {
         treeDisplay.style.borderColor = 'rgb(0,0,0)'
-        // treeDisplay.style.backgroundColor = 'rgb(255,255,255)'
         balanceStatus.textContent = 'Tree is balanced'
         balanceStatus.style.color = 'rgb(0,0,0)'
     }
-    unbalanceTally = 0
     rebalanceTally += 1
     updateOrderFields()
 }

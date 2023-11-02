@@ -20,7 +20,7 @@ body {
     justify-content:center;
     margin-bottom:50px;
     margin-top:50px;
-    width: min(100%, 600px);
+    width: min(100%, 400px);
 }
 
 button {
@@ -40,7 +40,7 @@ button {
     align-items:center;
     justify-content:center;
     position:relative;
-    width: min(90%, 400px);
+    width: 90%;
 }
 
 #tree {
@@ -54,11 +54,11 @@ button {
 }
 
 #balance-status {
+    bottom: 10px;
+    display:none;
+    font-size: .9em;
     position:absolute;
     right: 10px;
-    bottom: 10px;
-    font-size: .9em;
-    display:none;
 }
 
 #order-display {
@@ -66,7 +66,7 @@ button {
     display:none;
     flex-direction:column;
     justify-content:center;
-    width:100%;
+    width:85%;
 }
 
 #level-order,
@@ -74,6 +74,7 @@ button {
 #post-order,
 #in-order {
     font-weight: 200;
+    line-height:1.5em;
     margin-top:7px;
 }
 
@@ -82,8 +83,6 @@ button {
     gap:8px;
     margin-bottom:10px;
     margin-top:10px;
-    max-width: 100%;
-    padding:10px;
+    padding:15px;
     text-align:center;
-    width:fit-content;  
 }
