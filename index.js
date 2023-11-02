@@ -4,21 +4,7 @@ const postOrderText = document.getElementById('post-order')
 const inOrderText = document.getElementById('in-order')
 const orderDisplay = document.getElementById('order-display')
 const balanceButtons = document.getElementById('balance-buttons')
-const unbalananceButton = document.getElementById('unbalance')
-const rebalanceButton = document.getElementById('rebalance')
 const treeDisplay = document.getElementById('tree')
-const makeTreeButton = document.getElementById('make-tree')
-
-const prettyPrint = (node, prefix = "", isLeft = true) => {
-    if (node === null) return
-    if (node.rightChild !== null) {
-      prettyPrint(node.rightChild, `${prefix}${isLeft ? "│   " : "    "}`, false);
-    }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-    if (node.left !== null) {
-      prettyPrint(node.leftChild, `${prefix}${isLeft ? "    " : "│   "}`, true);
-    }
-};
 
 class node {
     constructor (value) {
@@ -26,6 +12,28 @@ class node {
         this.leftChild = null
         this.rightChild = null
     }
+}
+
+const buildTree = (array, start, end) => {
+    if (start > end) return null
+    const midpoint = Math.floor((start+end)/2)
+    const treeNode = new node(array[midpoint])
+    treeNode.leftChild = buildTree(array, start, midpoint-1)
+    treeNode.rightChild = buildTree(array, midpoint+1, end)
+    return treeNode
+}
+
+const fix = (array) => {
+    // sorts
+    const fixedArray = array.sort((a,b) => a > b ? +1 : -1)
+    //  removes duplicates
+    for (let i=1; i<fixedArray.length; i++) {
+        if (fixedArray[i] === fixedArray[i-1]) {
+            fixedArray.splice(i,1)
+            i--
+        }
+    }
+    return fixedArray
 }
 
 class tree  {
@@ -168,27 +176,8 @@ class tree  {
     }
 }
 
-const fix = (array) => {
-    // sorts
-    const fixedArray = array.sort((a,b) => a > b ? +1 : -1)
-    //  removes duplicates
-    for (let i=1; i<fixedArray.length; i++) {
-        if (fixedArray[i] === fixedArray[i-1]) {
-            fixedArray.splice(i,1)
-            i--
-        }
-    }
-    return fixedArray
-}
 
-const buildTree = (array, start, end) => {
-    if (start > end) return null
-    const midpoint = Math.floor((start+end)/2)
-    const treeNode = new node(array[midpoint])
-    treeNode.leftChild = buildTree(array, start, midpoint-1)
-    treeNode.rightChild = buildTree(array, midpoint+1, end)
-    return treeNode
-}
+
 
 const printInDiv = (div, node, prefix = "", isLeft = true) => {
     if (node === null) return
@@ -210,7 +199,6 @@ const overwriteDiv = (div, node) => {
     printInDiv(div, node, prefix = "", isLeft = true)
 }
 
-
 const demoTree = new tree([1,2,3])
 
 function randomArray(array = []) {
@@ -222,7 +210,14 @@ function randomArray(array = []) {
     return array
 }
 
-function makeTree() {
+function updateOrderFields() {
+    levelOrderText.textContent = demoTree.levelOrder().join(', ')
+    preOrderText.textContent = demoTree.preOrder().join(', ')
+    postOrderText.textContent = demoTree.postOrder().join(', ')
+    inOrderText.textContent = demoTree.inOrder().join(', ')
+}
+
+function newTree() {
     unbalanceTally = 0
     const array = randomArray()
     demoTree.root = buildTree(array, 0, array.length-1)
@@ -232,13 +227,6 @@ function makeTree() {
         orderDisplay.style.display = 'flex'
         balanceButtons.style.display = 'flex'
     }
-}
-
-function updateOrderFields() {
-    levelOrderText.textContent = demoTree.levelOrder().join(', ')
-    preOrderText.textContent = demoTree.preOrder().join(', ')
-    postOrderText.textContent = demoTree.postOrder().join(', ')
-    inOrderText.textContent = demoTree.inOrder().join(', ')
 }
 
 let unbalanceTally = 0
