@@ -203,7 +203,7 @@ const demoTree = new tree([1,2,3])
 
 function randomArray(array = []) {
     let nextNumber = 0
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 11; i++) {
         nextNumber += Math.ceil(Math.random()*4)
         array.push(nextNumber)
     }
