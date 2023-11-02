@@ -6,6 +6,9 @@ const orderDisplay = document.getElementById('order-display')
 const balanceButtons = document.getElementById('balance-buttons')
 const treeDisplay = document.getElementById('tree')
 const balanceStatus = document.getElementById('balance-status')
+const modal = document.getElementById('modal')
+const alertWindow = document.getElementById('alert')
+const alertMessage = document.getElementById('alert-message')
 
 class node {
     constructor (value) {
@@ -231,15 +234,20 @@ function newTree() {
         balanceButtons.style.display = 'flex'
         balanceStatus.style.display = 'flex'
     }
+    if (demoTree.isBalanced()) {
+        treeDisplay.style.borderColor = 'rgb(0,0,0)'
+        balanceStatus.textContent = 'Tree is balanced'
+        balanceStatus.style.color = 'rgb(0,0,0)'
+    }
 }
 
 function unbalanceTree() {
     if (!demoTree.isBalanced()) {
-        alert('The tree is already unbalanced')
+        modalAlert('The tree is already unbalanced.')
         return
     }
     if (rebalanceTally >=4) {
-        alert('This is getting out of hand. Why not start over with a new tree?')
+        modalAlert('This is getting out of hand. Why not start over with a new tree?')
         return
     }
     while (demoTree.isBalanced()) {
@@ -247,14 +255,16 @@ function unbalanceTree() {
     }
     overwriteDiv(treeDisplay, demoTree.root)
     updateOrderFields()
-    treeDisplay.style.borderColor = 'rgb(220,20,60)'
-    balanceStatus.textContent = 'Tree is not balanced'
-    balanceStatus.style.color = 'rgb(220,20,60)'
+    if (!demoTree.isBalanced()) {
+        treeDisplay.style.borderColor = 'rgb(220,20,60)'
+        balanceStatus.textContent = 'Tree is not balanced'
+        balanceStatus.style.color = 'rgb(220,20,60)'
+    }
 }
 
 function rebalanceTree() {
     if (demoTree.isBalanced()) {
-        alert('The tree is already balanced')
+        modalAlert('The tree is already balanced.')
         return
     }
     demoTree.rebalance()
@@ -266,4 +276,20 @@ function rebalanceTree() {
     }
     rebalanceTally += 1
     updateOrderFields()
+}
+
+function modalAlert(string) {
+    modal.style.display = 'flex'
+    alertMessage.textContent = string
+    
+}
+
+function closeModal(event) {
+    if (event.target !== alertWindow && event.target !== alertMessage) modal.style.display = 'none'
+}
+
+document.onkeydown = (event) => {
+    if (event.key === "Escape") {
+        modal.style.display = 'none'
+    }
 }

@@ -10,6 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&family=Playfair+Display&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="modal" onclick="closeModal(event)">
+        <div id="alert">
+            <div id="alert-message">This is a test message</div>
+            <button id="alert-ok" >OK</button>
+        </div>
+    </div>
     <div id="container">
         <h1>Binary Search Trees</h1>
         <button id="new-tree" onclick="newTree()">New tree</button>
