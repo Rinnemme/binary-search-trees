@@ -12,28 +12,28 @@
 <body>
     <div id="container">
         <h1>Binary Search Trees</h1>
-        <button id="make-tree">Make tree</button>
+        <button id="make-tree" onclick="makeTree()">New tree</button>
         <div id="tree"></div>
         <div id="balance-buttons">
-            <button id="unbalance">Unbalance</button>
-            <button id="rebalance">Rebalance</button>
+            <button id="unbalance" onclick="unbalanceTree()">Unbalance</button>
+            <button id="rebalance" onclick="rebalanceTree()">Rebalance</button>
         </div>
         <div id="order-display">
             <div class="order">
                 Level order
-                <div id="level-order">test</div>
+                <div id="level-order"></div>
             </div>
             <div class="order">
                 Pre-order
-                <div id="pre-order">test</div>
+                <div id="pre-order"></div>
             </div>
             <div class="order">
                 Post-order
-                <div id="post-order">test</div>
+                <div id="post-order"></div>
             </div>
             <div class="order">
                 In order
-                <div id="in-order">test</div>
+                <div id="in-order"></div>
             </div>
         </div>
     </div>
