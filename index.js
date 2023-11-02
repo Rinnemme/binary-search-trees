@@ -28,9 +28,7 @@ const buildTree = (array, start, end) => {
 }
 
 const fix = (array) => {
-    // sorts
     const fixedArray = array.sort((a,b) => a > b ? +1 : -1)
-    //  removes duplicates
     for (let i=1; i<fixedArray.length; i++) {
         if (fixedArray[i] === fixedArray[i-1]) {
             fixedArray.splice(i,1)
@@ -62,7 +60,6 @@ class tree  {
     delete(value, startingNode = this.root) {
         const targetNode = value > startingNode.data ? startingNode.rightChild : startingNode.leftChild
         if (targetNode.data !== value) return this.delete(value, targetNode)
-        // if value node has no children
         if (targetNode.leftChild === null && targetNode.rightChild === null) {
             if (value > startingNode.data) {
                 startingNode.rightChild = null
@@ -72,7 +69,6 @@ class tree  {
                 return
             }
         }
-        // if value node has two children
         if (targetNode.leftChild !== null && targetNode.rightChild !== null) {
             const nextBiggest = this.leftDescendant(targetNode.rightChild)
             this.parentOf(nextBiggest).leftChild = nextBiggest.rightChild
@@ -90,7 +86,6 @@ class tree  {
             console.log(startingNode)
             return
         }
-        // if value node has one child
         if (value > startingNode.data) {
             startingNode.rightChild = targetNode.leftChild !== null ? targetNode.leftChild : targetNode.rightChild
         }
