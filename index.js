@@ -9,6 +9,8 @@ const balanceStatus = document.getElementById('balance-status')
 const modal = document.getElementById('modal')
 const alertWindow = document.getElementById('alert')
 const alertMessage = document.getElementById('alert-message')
+const unbalanceButton = document.getElementById('unbalance')
+const rebalanceButton = document.getElementById('rebalance')
 
 class node {
     constructor (value) {
@@ -233,6 +235,8 @@ function newTree() {
         treeDisplay.style.borderColor = 'rgb(0,0,0)'
         balanceStatus.textContent = 'Tree is balanced'
         balanceStatus.style.color = 'rgb(0,0,0)'
+        rebalanceButton.style.display = 'none'
+        unbalanceButton.style.display = 'flex'
     }
 }
 
@@ -254,6 +258,8 @@ function unbalanceTree() {
         treeDisplay.style.borderColor = 'rgb(220,20,60)'
         balanceStatus.textContent = 'Tree is not balanced'
         balanceStatus.style.color = 'rgb(220,20,60)'
+        rebalanceButton.style.display = 'flex'
+        unbalanceButton.style.display = 'none'
     }
 }
 
@@ -268,6 +274,8 @@ function rebalanceTree() {
         treeDisplay.style.borderColor = 'rgb(0,0,0)'
         balanceStatus.textContent = 'Tree is balanced'
         balanceStatus.style.color = 'rgb(0,0,0)'
+        rebalanceButton.style.display = 'none'
+        unbalanceButton.style.display = 'flex'
     }
     rebalanceTally += 1
     updateOrderFields()
